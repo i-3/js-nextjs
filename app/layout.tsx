@@ -1,14 +1,14 @@
-import '@/app/globals.css';
-import { inter } from '@/app/ui/fonts';
-import { Metadata } from 'next';
-import { ThemeProvider } from '@/components/theme-provider';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/app-sidebar';
-import { Header } from '@/components/header';
-import { cookies } from 'next/headers';
-import Template from './ui/template';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import "@/app/globals.css";
+import { inter } from "@/app/ui/fonts";
+import { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Header } from "@/components/header";
+import { cookies } from "next/headers";
+import Template from "./ui/template";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
   // title: {
@@ -16,22 +16,22 @@ export const metadata: Metadata = {
   //   default: 'Iurii Korotkov',
   // },
   description:
-    'Next.js project deployed on Oracle Cloud Infrastructure with Ubuntu LTS instance, Nginx web server and Certbot certificate.',
-  metadataBase: new URL('https://www.iurii.lv/'),
+    "Next.js project deployed on Oracle Cloud Infrastructure with Ubuntu LTS instance, Nginx web server and Certbot certificate.",
+  metadataBase: new URL("https://www.freimann.lv/"),
 
   keywords: [
-    'Iurii',
-    'Korotkov',
-    'Latvia',
-    'Riga',
-    'developer',
-    'mobile',
-    'web',
+    "Iurii",
+    "Korotkov",
+    "Latvia",
+    "Riga",
+    "developer",
+    "mobile",
+    "web",
   ],
-  authors: [{ name: 'Iurii Korotkov' }],
-  publisher: 'Iurii Korotkov',
+  authors: [{ name: "Iurii Korotkov" }],
+  publisher: "Iurii Korotkov",
   // alternates: { canonical: '/' },
-  robots: 'all',
+  robots: "all",
 };
 
 export default async function RootLayout({
@@ -40,17 +40,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-  const defaultOpen = cookieStore.get('sidebar:state')?.value === 'true';
+  const defaultOpen = cookieStore.get("sidebar:state")?.value === "true";
   const messages = await getMessages();
   const locale = await getLocale();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${inter.className} antialiased overflow-x-hidden`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
+            attribute="class"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
@@ -58,8 +58,8 @@ export default async function RootLayout({
               <AppSidebar />
               {/* <Header /> */}
 
-              <main className='w-screen'>
-                <SidebarTrigger className='m-4' />
+              <main className="w-screen">
+                <SidebarTrigger className="m-4" />
 
                 <Template>{children}</Template>
               </main>
