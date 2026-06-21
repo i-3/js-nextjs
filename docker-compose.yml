@@ -41,10 +41,8 @@ services:
 
 networks:
   default:
+    external: true
     name: shared_net
-    # external: false позволит докеру самому создать эту сеть на ноутбуке, 
-    # а в OCI он просто подключится к уже существующей shared_net, если имя совпадает.
-    external: false
 
 volumes:
   pgdata:
